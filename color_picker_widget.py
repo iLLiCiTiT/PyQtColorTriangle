@@ -12,7 +12,7 @@ from color_inputs import (
 class ColorPickerWidget(QtWidgets.QWidget):
     color_changed = QtCore.Signal(QtGui.QColor)
 
-    def __init__(self, parent=None):
+    def __init__(self, color=None, parent=None):
         super(ColorPickerWidget, self).__init__(parent)
 
         # Eye picked widget
@@ -26,6 +26,8 @@ class ColorPickerWidget(QtWidgets.QWidget):
 
         # Color triangle
         color_triangle = QtColorTriangle(utils_widget)
+        if color:
+            color_triangle.set_color(color)
 
         # Color preview
         color_view = ColorViewer(bottom_utils_widget)
@@ -93,7 +95,10 @@ class ColorPickerWidget(QtWidgets.QWidget):
         )
         self.resize(width, self.height())
 
-    def setColor(self, color):
+    def color(self):
+        return self.color_view.color()
+
+    def set_color(self, color):
         self.alpha_inputs.set_alpha(color.alpha())
         self.on_color_change(color)
 
