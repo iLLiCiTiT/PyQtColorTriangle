@@ -52,12 +52,12 @@ class QtColorTriangle(QtWidgets.QWidget):
 
     # Thick of color wheel ratio where 1 is fully filled circle
     inner_radius_ratio = 5.0
-    # Ratio where hue pointer on wheel is relative to `inner_radius_ratio`
+    # Ratio where hue selector on wheel is relative to `inner_radius_ratio`
     # - middle of the wheel is twice `inner_radius_ratio`
-    pointer_radius_ratio = inner_radius_ratio * 2
-    # Size ratio of pointers on wheel and in triangle
+    selector_radius_ratio = inner_radius_ratio * 2
+    # Size ratio of selectors on wheel and in triangle
     ellipse_size_ratio = 10.0
-    # Ration if pointers thickness
+    # Ration of selectors thickness
     ellipse_thick_ratio = 50.0
     # Hue offset on color wheel (0 - 359)
     # - red on top if set to "0"
@@ -147,9 +147,9 @@ class QtColorTriangle(QtWidgets.QWidget):
             self.outer_radius
             - (self.outer_radius / self.inner_radius_ratio)
         )
-        pointer_radius = (
+        selector_radius = (
             self.outer_radius
-            - (self.outer_radius / self.pointer_radius_ratio)
+            - (self.outer_radius / self.selector_radius_ratio)
         )
         self.point_a = QtCore.QPointF(
             cx + (cos(self.angle_a) * inner_radius),
@@ -164,8 +164,8 @@ class QtColorTriangle(QtWidgets.QWidget):
             cy - (sin(self.angle_c) * inner_radius)
         )
         self.point_d = QtCore.QPointF(
-            cx + (cos(self.angle_a) * pointer_radius),
-            cy - (sin(self.angle_a) * pointer_radius)
+            cx + (cos(self.angle_a) * selector_radius),
+            cy - (sin(self.angle_a) * selector_radius)
         )
 
         self.selector_pos = self._point_from_color(self.cur_color)
@@ -200,9 +200,9 @@ class QtColorTriangle(QtWidgets.QWidget):
             self.outer_radius
             - (self.outer_radius / self.inner_radius_ratio)
         )
-        pointer_radius = (
+        selector_radius = (
             self.outer_radius
-            - (self.outer_radius / self.pointer_radius_ratio)
+            - (self.outer_radius / self.selector_radius_ratio)
         )
         self.point_a = QtCore.QPointF(
             cx + (cos(self.angle_a) * inner_radius),
@@ -217,8 +217,8 @@ class QtColorTriangle(QtWidgets.QWidget):
             cy - (sin(self.angle_c) * inner_radius)
         )
         self.point_d = QtCore.QPointF(
-            cx + (cos(self.angle_a) * pointer_radius),
-            cy - (sin(self.angle_a) * pointer_radius)
+            cx + (cos(self.angle_a) * selector_radius),
+            cy - (sin(self.angle_a) * selector_radius)
         )
 
         self.selector_pos = self._point_from_color(self.cur_color)
@@ -325,9 +325,9 @@ class QtColorTriangle(QtWidgets.QWidget):
                 self.outer_radius
                 - (self.outer_radius / self.inner_radius_ratio)
             )
-            pointer_radius = (
+            selector_radius = (
                 self.outer_radius
-                - (self.outer_radius / self.pointer_radius_ratio)
+                - (self.outer_radius / self.selector_radius_ratio)
             )
             self.point_a = QtCore.QPointF(
                 cx + (cos(self.angle_a) * inner_radius),
@@ -342,8 +342,8 @@ class QtColorTriangle(QtWidgets.QWidget):
                 cy - (sin(self.angle_c) * inner_radius)
             )
             self.point_d = QtCore.QPointF(
-                cx + (cos(self.angle_a) * pointer_radius),
-                cy - (sin(self.angle_a) * pointer_radius)
+                cx + (cos(self.angle_a) * selector_radius),
+                cy - (sin(self.angle_a) * selector_radius)
             )
 
             self.selector_pos = self._point_from_color(self.cur_color)
@@ -425,13 +425,13 @@ class QtColorTriangle(QtWidgets.QWidget):
                 cy - (sin(self.angle_c) * inner_radius)
             )
 
-            pointer_radius = (
+            selector_radius = (
                 self.outer_radius
-                - (self.outer_radius / self.pointer_radius_ratio)
+                - (self.outer_radius / self.selector_radius_ratio)
             )
             self.point_d = QtCore.QPointF(
-                cx + (cos(self.angle_a) * pointer_radius),
-                cy - (sin(self.angle_a) * pointer_radius)
+                cx + (cos(self.angle_a) * selector_radius),
+                cy - (sin(self.angle_a) * selector_radius)
             )
 
             self.selector_pos = self._point_from_color(self.cur_color)
@@ -538,9 +538,9 @@ class QtColorTriangle(QtWidgets.QWidget):
             self.outer_radius
             - (self.outer_radius / self.inner_radius_ratio)
         )
-        pointer_radius = (
+        selector_radius = (
             self.outer_radius
-            - (self.outer_radius / self.pointer_radius_ratio)
+            - (self.outer_radius / self.selector_radius_ratio)
         )
         self.point_a = QtCore.QPointF(
             cx + (cos(self.angle_a) * inner_radius),
@@ -555,8 +555,8 @@ class QtColorTriangle(QtWidgets.QWidget):
             cy - (sin(self.angle_c) * inner_radius)
         )
         self.point_d = QtCore.QPointF(
-            cx + (cos(self.angle_a) * pointer_radius),
-            cy - (sin(self.angle_a) * pointer_radius)
+            cx + (cos(self.angle_a) * selector_radius),
+            cy - (sin(self.angle_a) * selector_radius)
         )
 
         # Find the current position of the selector
