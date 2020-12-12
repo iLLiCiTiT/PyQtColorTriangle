@@ -37,6 +37,17 @@ class Vertex:
 
 
 class QtColorTriangle(QtWidgets.QWidget):
+    """The QtColorTriangle class provides a triangular color selection widget.
+
+    This widget uses the HSV color model, and is therefore useful for
+    selecting colors by eye.
+
+    The triangle in the center of the widget is used for selecting
+    saturation and value, and the surrounding circle is used for
+    selecting hue.
+
+    Use set_color() and color() to set and get the current color.
+    """
     color_changed = QtCore.Signal(QtGui.QColor)
 
     # Thick of color wheel ratio where 1 is fully filled circle
