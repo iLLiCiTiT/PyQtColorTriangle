@@ -55,7 +55,7 @@ class PickLabel(QtWidgets.QLabel):
     def __init__(self, pick_widget):
         super(PickLabel, self).__init__()
         self.setMouseTracking(True)
-
+        self.setWindowModality(QtCore.Qt.WindowModal)
         self.pick_widget = pick_widget
 
         self.radius_pen = QtGui.QPen(QtGui.QColor(27, 27, 27), 2)
