@@ -162,13 +162,9 @@ class QtColorTriangle(QtWidgets.QWidget):
 
         self.color_changed.emit(self.cur_color)
 
-    def sizeHint(self):
-        return QtCore.QSize(100, 100)
-
     def heightForWidth(self, width):
         return width
 
-    # Internal
     def polish(self):
         size_w = self.contentsRect().width()
         size_h = self.contentsRect().height()
