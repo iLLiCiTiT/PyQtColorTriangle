@@ -83,17 +83,12 @@ class ColorPickerWidget(QtWidgets.QWidget):
         self.color_inputs = color_inputs
         self.alpha_inputs = alpha_inputs
 
-    def show(self):
-        super(ColorPickerWidget, self).show()
-        triangle_width = (
+    def showEvent(self, event):
+        super(ColorPickerWidget, self).showEvent(event)
+        triangle_width = int((
             self.utils_widget.height() - self.bottom_utils_widget.height()
-        )
-        width = (
-            triangle_width
-            + self.color_inputs.width()
-            + self.alpha_inputs.width()
-        )
-        self.resize(width, self.height())
+        ) / 5 * 4)
+        self.color_triangle.setMinimumWidth(triangle_width)
 
     def color(self):
         return self.color_view.color()
