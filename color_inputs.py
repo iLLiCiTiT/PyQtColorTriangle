@@ -457,30 +457,34 @@ class HSLInputs(QtWidgets.QGroupBox):
 class ColorInputsWidget(QtWidgets.QWidget):
     color_changed = QtCore.Signal(QtGui.QColor)
 
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, **kwargs):
         super(ColorInputsWidget, self).__init__(parent)
 
         color = QtGui.QColor()
 
-        hex_input = HEXInputs(color, self)
-        rgb_input = RGBInputs(color, self)
-        hsl_input = HSLInputs(color, self)
-        hsv_input = HSVInputs(color, self)
-        cmyk_input = CMYKInputs(color, self)
+        input_fields = []
 
-        input_fields = [
-            hex_input,
-            rgb_input,
-            hsl_input,
-            hsv_input,
-            cmyk_input
-        ]
+        if kwargs.get("use_hex", True):
+            input_fields.append(HEXInputs(color, self))
+
+        if kwargs.get("use_rgb", True):
+            input_fields.append(RGBInputs(color, self))
+
+        if kwargs.get("use_hsl", True):
+            input_fields.append(HSLInputs(color, self))
+
+        if kwargs.get("use_hsv", True):
+            input_fields.append(HSVInputs(color, self))
+
+        if kwargs.get("use_cmyk", True):
+            input_fields.append(CMYKInputs(color, self))
 
         inputs_widget = QtWidgets.QWidget(self)
         inputs_layout = QtWidgets.QVBoxLayout(inputs_widget)
 
         for input_field in input_fields:
             inputs_layout.addWidget(input_field)
+            input_field.value_changed.connect(self._on_value_change)
 
         layout = QtWidgets.QVBoxLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
@@ -488,19 +492,7 @@ class ColorInputsWidget(QtWidgets.QWidget):
         spacer = QtWidgets.QWidget(self)
         layout.addWidget(spacer, 1)
 
-        hex_input.value_changed.connect(self._on_value_change)
-        rgb_input.value_changed.connect(self._on_value_change)
-        cmyk_input.value_changed.connect(self._on_value_change)
-        hsl_input.value_changed.connect(self._on_value_change)
-        hsv_input.value_changed.connect(self._on_value_change)
-
         self.input_fields = input_fields
-
-        self.hex_input = hex_input
-        self.rgb_input = rgb_input
-        self.hsl_input = hsl_input
-        self.hsv_input = hsv_input
-        self.cmyk_input = cmyk_input
 
         self.color = color
 
